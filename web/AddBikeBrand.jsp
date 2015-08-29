@@ -161,7 +161,7 @@ session.setAttribute("noti","No");
 
 	
 		
-                <p><input type="file" size="20" id="fileUpload" name="ufile" >
+                <p><input type="file" size="20" id="ufile" name="ufile" >
                
              
                 </p>

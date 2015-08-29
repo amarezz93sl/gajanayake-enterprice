@@ -23,7 +23,7 @@
        
         <%
            
-       
+     
     
          
           String fname=request.getParameter("fname");
@@ -34,6 +34,7 @@
           double tel=Double.parseDouble(request.getParameter("tel"));
           String email=request.getParameter("email");
           String role=request.getParameter("role");
+          String file=request.getParameter("ufile");
           
           
         
@@ -103,17 +104,38 @@
                  
             
             
-          
+         
          try
           { 
              Statement stat=conn.createStatement();
              
              String sql="INSERT INTO `gajanayake`.`user`(`userID`,`fname`,`BDay`,`tel`,`Address`,`lname`,`password`,`Email`,`NIC`,`nameWithIni`,`salary`,`AccBalance`,`"+role+"`,`username`) VALUES('"+userID+"','"+fname+"','"+BDay+"','"+tel+"','"+Address+"','"+lname+"','"+password+"','"+email+"','"+nic+"','"+nameWithIni+"','"+salary+"','"+accBalance+"','1','"+username+"')";
-             stat.executeUpdate(sql);
              
-              response.sendRedirect(url);
-             session.setAttribute("noti","yes");
              
+            
+             PreparedStatement pstmt = null;
+             ResultSet rs1 = null;
+             FileInputStream fis = null;
+             File image = new File("C:/Users/windya yasas/Downloads/edit.png");
+               
+                pstmt = conn.prepareStatement("UPDATE `gajanayake`.`user` SET `image` = ? WHERE `userID`='"+userID+"'");
+               
+               
+                fis = new FileInputStream(image);
+                pstmt.setBinaryStream(1, (InputStream) fis, (int) (image.length()));
+                 
+              
+                
+                stat.executeUpdate(sql);
+                int count = pstmt.executeUpdate();
+                if (count > 0) {
+                    System.out.println("The image has been inserted successfully");
+                    session.setAttribute("noti","yes");
+                    response.sendRedirect("AddBikeBrand.jsp");
+                } else {
+                    System.out.println("The image did not insert successfully");
+                }
+                 
              
           
              

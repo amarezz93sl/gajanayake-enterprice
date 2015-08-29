@@ -97,7 +97,7 @@
          try
           { 
              
-              File image = new File("C:/Users/windya yasas/Downloads/"+file);
+                File image = new File("C:/Users/windya yasas/Downloads/"+file);
                
                 pstmt = conn.prepareStatement("INSERT INTO `gajanayake`.`mbbrand` (`BrandID`,`Bname`,`RegisteredNo`,`Logo`,`Description`) VALUES (?,?,?,?,?)");
                 pstmt.setString(1, BrandID);

@@ -45,8 +45,10 @@ var word5 ='BDay='+ escape( document.getElementById('BDay').value);
 var word6 ='tel='+ escape( document.getElementById('tel').value);
 var word7 ='email='+ escape( document.getElementById('email').value);
 var word8 ='role='+escape('Customer');
+var word9 ='ufile='+ escape( document.getElementById('ufile').value);
 
-var the_data =word1 +'&'+ word2+'&'+ word3+'&'+ word4+'&'+ word5+'&'+ word6+'&'+ word7+'&'+ word8;
+
+var the_data =word1 +'&'+ word2+'&'+ word3+'&'+ word4+'&'+ word5+'&'+ word6+'&'+ word7+'&'+ word8+'&'+ word9;
 self.xmlHttpReq.send(the_data); 
 
 
@@ -61,8 +63,7 @@ self.xmlHttpReq.send(the_data);
 
 function updatepage(field,str){ 
 document.getElementById(field).innerHTML = str;
-alert('Successfuly Added');
-
+alert("Successfully Updated");
 
 } 
 
@@ -159,9 +160,9 @@ session.setAttribute("noti","No");
 
 	
 		
-                <p><input type="file" size="20" id="imageUpload" ></p>
+                <p><input type="file" size="20" id="ufile" name="ufile" ></p>
                 <p class="form-submit">
-		<button  type="submit">Upload</button>
+		
                 </p>
 
     <p style="color: red">Optional * </p>
