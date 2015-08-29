@@ -124,7 +124,7 @@ session.setAttribute("noti","No");
 	
 <div id="respond" class="comment-respond">
     
-    <form action="AddBikeBrand1.jsp" class="comment-form" method="post">
+    <form action="AddBikeBrand1.jsp" class="comment-form" method="post" >
 
 							
 <p ><label>Brand Name </label> 
@@ -138,9 +138,7 @@ session.setAttribute("noti","No");
         <input type="submit" class="submit"  value="Add"> 
 
  </p>  
-					
-</form>
-							</div><!-- #respond -->
+											</div><!-- #respond -->
 			</div><!-- #comments .comments-area -->			</div>
 			
 				<div id="secondary" class="col-md-4" role="complementary">
@@ -163,7 +161,10 @@ session.setAttribute("noti","No");
 
 	
 		
-                <p><input type="file" size="20" id="imageUpload" name="ufile" ></p>
+                <p><input type="file" size="20" id="fileUpload" name="ufile" >
+               
+             
+                </p>
                
 	
 </div>
@@ -173,6 +174,7 @@ session.setAttribute("noti","No");
 	</div>
 
 	</main><!-- main -->
+        </form>
         <%@include file="footer.jsp" %>
 </div><!-- #page -->
 

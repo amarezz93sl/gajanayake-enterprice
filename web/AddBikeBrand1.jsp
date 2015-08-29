@@ -30,6 +30,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,8 +48,24 @@
           out.print(bname);
           String registeredno=request.getParameter("regno");
           String description=request.getParameter("description");
+          String file=request.getParameter("ufile");
+         
+          
+          
+         
       out.print(registeredno);
       out.print(description);
+       out.print(" "+file);
+     
+      
+            PreparedStatement pstmt = null;
+            ResultSet rs1 = null;
+            FileInputStream fis = null;
+ 
+           
+           
+ 
+        
          
          
          //Increament ID    
@@ -79,14 +96,32 @@
          
          try
           { 
-             Statement stat=conn.createStatement();
+             
+              File image = new File("C:/Users/windya yasas/Downloads/"+file);
+               
+                pstmt = conn.prepareStatement("INSERT INTO `gajanayake`.`mbbrand` (`BrandID`,`Bname`,`RegisteredNo`,`Logo`,`Description`) VALUES (?,?,?,?,?)");
+                pstmt.setString(1, BrandID);
+                pstmt.setString(2, bname);
+                pstmt.setString(3, registeredno);
+                fis = new FileInputStream(image);
+                pstmt.setBinaryStream(4, (InputStream) fis, (int) (image.length()));
+                pstmt.setString(5, description);
+              
+                
+ 
+                int count = pstmt.executeUpdate();
+                if (count > 0) {
+                    System.out.println("The image has been inserted successfully");
+                    session.setAttribute("noti","yes");
+                    response.sendRedirect("AddBikeBrand.jsp");
+                } else {
+                    System.out.println("The image did not insert successfully");
+                }
+                
              
          
-             String sql="INSERT INTO `gajanayake`.`mbbrand` (`BrandID`, `Bname`, `RegisteredNo`, `Description`) VALUES ('"+BrandID+"', '"+bname+"', '"+registeredno+"', '"+description+"')";
-             
-             stat.executeUpdate(sql);
-              session.setAttribute("noti","yes");
-            response.sendRedirect("AddBikeBrand.jsp");
+            
+          
             
              
              
@@ -98,6 +133,25 @@
           {
              e.printStackTrace();
           }
+          finally
+            {
+                try {
+                    if (rs1 != null) {
+                        rs1.close();
+                        rs1 = null;
+                    }
+                    if (pstmt != null) {
+                        pstmt.close();
+                        pstmt = null;
+                    }
+                    if (conn != null) {
+                        conn.close();
+                        conn = null;
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
   
         %>
     </body>
