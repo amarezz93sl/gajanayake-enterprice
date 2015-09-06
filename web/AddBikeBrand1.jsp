@@ -55,7 +55,7 @@
          
       out.print(registeredno);
       out.print(description);
-       out.print(" "+file);
+       System.out.print(" "+file);
      
       
             PreparedStatement pstmt = null;
